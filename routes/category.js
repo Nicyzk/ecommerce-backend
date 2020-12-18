@@ -1,0 +1,23 @@
+const express = require('express')
+const router = express.Router()
+const { createCategory, getCategories } = require('../controllers/category')
+const { isAuth, isAuthAdmin } = require('../middlewares/isAuth')
+const multer = require('multer')
+const { nanoid } = require('nanoid')
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, nanoid() + '-' + file.originalname)
+    }
+})
+
+const upload = multer( {storage: storage} )
+
+router.post('/create', isAuth, isAuthAdmin, upload.single('categoryImage'), createCategory)
+router.get('/getCategories', getCategories)
+
+module.exports = router
