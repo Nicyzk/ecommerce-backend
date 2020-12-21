@@ -1,13 +1,13 @@
 const Product = require('../models/product')
 const slugify = require('slugify')
 exports.createProduct = (req, res, next) => {
-    const { name, price, description, category } = req.body
+    const { name, price, quantity, description, category } = req.body
 
     let imagesPath
     if (req.files.length > 0) {
         imagesPath = req.files.map(file => {
             return {
-                img: process.env.API + '/public/' + req.file.filename
+                img: /*process.env.API + '/public/' + */file.filename
             }
         })
     }
@@ -17,6 +17,7 @@ exports.createProduct = (req, res, next) => {
         slug: slugify(name),
         price: price,
         description: description,
+        quantity,
         productPictures: imagesPath,
         category: category,
         createdBy: req.user._id 

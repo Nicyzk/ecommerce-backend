@@ -16,8 +16,16 @@ exports.createCategory = (req, res, next) => {
     }
     const category = new Category(categoryObj)
     category.save()
-    .then(() => {
+    .then((cat) => {
+        catObj = {
+            id: cat._id,
+            name: cat.name,
+            slug: cat.slug,
+            parentId: cat.parentId,
+            children: []
+        }
         return res.status(200).json({
+            category: catObj,
             message: "category created"
         })
     })
@@ -37,6 +45,7 @@ const createNestedList = (categories, parentId) => {
             id: i._id,
             name: i.name,
             slug: i.slug,
+            parentId: i.parentId,
             children: nestedList
         }
         list.push(item)

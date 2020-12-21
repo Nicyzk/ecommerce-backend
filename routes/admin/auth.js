@@ -8,6 +8,6 @@ const router = express.Router()
 
 router.post('/signup', validateSignupRequest, handleInvalidity, authControllers.signup)
 router.post('/signin',  validateSigninRequest, handleInvalidity, authControllers.signin)
-router.post('/signout', isAuth, isAuthAdmin, authControllers.signout)
+router.post('/signout', /*isAuth, isAuthAdmin,*/ authControllers.signout)
 
 module.exports = router
