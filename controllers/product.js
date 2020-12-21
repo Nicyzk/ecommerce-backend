@@ -24,9 +24,14 @@ exports.createProduct = (req, res, next) => {
     })
 
     product.save()
-    .then(() => {
+    .then((prod) => {
+        return Product.findOne({_id: prod._id})
+        .select("_id name slug price quantity description productPictures category")
+        .populate('category', '_id name')
+    })
+    .then((prod) => {
         res.status(200).json({
-            product: product
+            product: prod
         })
     })
     .catch(err => {

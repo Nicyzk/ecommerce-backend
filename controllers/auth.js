@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { validationResult } = require('express-validator')
 
 const User = require('../models/user')
 
@@ -21,7 +20,8 @@ exports.signup = async (req, res, next) => {
             firstName: firstName,
             lastName: lastName, 
             email: email,
-            hash_password: hash_password
+            hash_password: hash_password,
+            userName: email.split('@')[0]
         })
         await user.save()
         return res.json({

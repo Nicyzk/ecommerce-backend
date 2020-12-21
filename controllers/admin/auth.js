@@ -21,6 +21,7 @@ exports.signup = async (req, res, next) => {
             lastName: lastName, 
             email: email,
             hash_password: hash_password,
+            userName: email.split('@')[0],
             type: 'admin'
         })
         await user.save()

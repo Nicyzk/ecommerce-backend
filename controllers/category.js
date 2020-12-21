@@ -1,6 +1,5 @@
 const Category = require('../models/category')
 const slugify = require('slugify')
-const multer = require('multer')
 
 
 exports.createCategory = (req, res, next) => {
@@ -9,7 +8,7 @@ exports.createCategory = (req, res, next) => {
         slug: slugify(req.body.name)
     }
     if (req.file) {
-        categoryObj.imagePath = process.env.API + '/public/' + req.file.filename
+        categoryObj.imagePath = /*process.env.API + '/public/' + */ req.file.filename
     }
     if (req.body.parentId) {
         categoryObj.parentId = req.body.parentId
