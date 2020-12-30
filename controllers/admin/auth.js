@@ -75,6 +75,6 @@ exports.signin = (req, res, next) => {
 
 exports.signout = (req, res, next) => {
     res.status(200).json({
-        message: "signed out successfully"
+        message: "admin signed out successfully"
     })
 }

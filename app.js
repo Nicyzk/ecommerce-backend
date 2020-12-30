@@ -8,6 +8,7 @@ const categoryRoutes = require('./routes/category')
 const productRoutes = require('./routes/product')
 const cartRoutes = require('./routes/cart')
 const initialDataRoutes = require('./routes/admin/initialData')
+const pageRoutes = require('./routes/admin/page')
 const path = require('path')
 
 const app = express()
@@ -25,8 +26,9 @@ app.use((req, res, next) => {
 app.use(bodyParser.json())
 app.use('/public', express.static(path.join(__dirname, 'uploads')))
 
-app.use('/auth/admin', adminAuthRoutes)
-app.use('/initialdata/admin', initialDataRoutes)
+app.use('/admin/auth', adminAuthRoutes)
+app.use('/admin/initialdata', initialDataRoutes)
+app.use('/page', pageRoutes)
 app.use('/auth', authRoutes)
 
 app.use('/category', categoryRoutes)

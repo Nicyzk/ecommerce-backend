@@ -11,6 +11,7 @@ const createNestedList = (categories, parentId) => {
             id: i._id,
             name: i.name,
             slug: i.slug,
+            type: i.type,
             parentId: i.parentId,
             children: nestedList
         }

@@ -9,4 +9,6 @@ router.post('/signup', validateSignupRequest, handleInvalidity, authControllers.
 
 router.post('/signin',  validateSigninRequest, handleInvalidity, authControllers.signin)
 
+router.post('/signout', authControllers.signout)
+
 module.exports = router

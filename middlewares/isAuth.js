@@ -7,7 +7,7 @@ exports.isAuth = (req, res, next) => {
         req.user = user
         next()
     } catch (err) {
-        err.statusCode = 422
+        err.statusCode = 400
         err.message = "Authorization failed"
         throw err
     }
