@@ -49,13 +49,14 @@ exports.signin = (req, res, next) => {
     .then(isValid => {
         if (isValid) {
             const token = jwt.sign({_id: userFound._id, type: userFound.type}, process.env.JWT_SECRET, {expiresIn: '1h'})
-            const { firstName, lastName, type } = userFound
+            const { firstName, lastName, type, email } = userFound
             res.status(200).json({
                 token: token,
                 user: {
                     firstName,
                     lastName,
-                    type
+                    type,
+                    email
                 }
             })
         } else {

@@ -9,7 +9,10 @@ const productRoutes = require('./routes/product')
 const cartRoutes = require('./routes/cart')
 const initialDataRoutes = require('./routes/admin/initialData')
 const pageRoutes = require('./routes/admin/page')
-const path = require('path')
+const addressRoutes = require('./routes/address')
+const orderRoutes = require('./routes/order')
+const path = require('path');
+const order = require('./models/order');
 
 const app = express()
 
@@ -34,6 +37,8 @@ app.use('/auth', authRoutes)
 app.use('/category', categoryRoutes)
 app.use('/product', productRoutes)
 app.use('/cart', cartRoutes)
+app.use('/address', addressRoutes)
+app.use('/order', orderRoutes)
 
 app.use((error, req, res, next) => {
     if (!error.statusCode) {
